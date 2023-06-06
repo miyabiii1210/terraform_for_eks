@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hoge-dev-frontend-service
+  namespace: hoge
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: dev-frontend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hoge-dev-backend-service
+  namespace: hoge
+spec:
+  ports:
+    - name: grpc
+      port: 8000
+      targetPort: 9001
+  type: NodePort
+  selector:
+    app: dev-backend
